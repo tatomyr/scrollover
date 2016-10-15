@@ -13,11 +13,11 @@ const scrollover = (scrolloverTime) => {
     } else {
       this.animationInProgress = true;
 
-      const t = $(event.currentTarget).offset().top,
-        T = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0, // Polyfill
-        h = $(event.currentTarget).height(),
-        H = window.innerHeight,
-        dY = event.originalEvent.deltaY; // Vanilla.js: event.deltaY, jQuery: event.originalEvent.deltaY
+      const t = Math.round($(event.currentTarget).offset().top),
+        T = Math.round(window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0), // Polyfill
+        h = Math.round($(event.currentTarget).height()),
+        H = Math.round(window.innerHeight),
+        dY = Math.round(event.originalEvent.deltaY); // Vanilla.js: event.deltaY, jQuery: event.originalEvent.deltaY
       console.log(`t: ${t}, T: ${T} | h: ${h}, H: ${H} | dY: ${dY}`);
 
       var scrollTop = undefined;
@@ -40,6 +40,7 @@ const scrollover = (scrolloverTime) => {
           // Manually
         }
       }
+      // scrollTop = Math.round(scrollTop);
       console.log('scrollTop:', scrollTop);
 
       if (scrollTop >= 0 && scrollTop <= document.body.clientHeight - H) {
