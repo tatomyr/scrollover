@@ -20,7 +20,7 @@ const scrollover = (scrolloverTime) => {
         dY = Math.round(event.originalEvent.deltaY); // Vanilla.js: event.deltaY, jQuery: event.originalEvent.deltaY
       console.log(`t: ${t}, T: ${T} | h: ${h}, H: ${H} | dY: ${dY}`);
 
-      var scrollTop = undefined;
+      let scrollTop = undefined;
       if (dY > 0) {
         if (t > T) {
           scrollTop = t;
