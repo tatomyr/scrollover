@@ -7,11 +7,11 @@ const scrollover = (scrolloverTime) => {
 
   $('[data-scrollover]').on('wheel', (event) => {
     // console.log(event);
-    if (this.animationInProgress) {
+    if (scrollover.animationInProgress) {
       // It's very important to avoid shaking:
       event.preventDefault();
     } else {
-      this.animationInProgress = true;
+      scrollover.animationInProgress = true;
 
       const t = Math.round($(event.currentTarget).offset().top),
         T = Math.round(window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0), // Polyfill
@@ -20,7 +20,7 @@ const scrollover = (scrolloverTime) => {
         dY = Math.round(event.originalEvent.deltaY); // Vanilla.js: event.deltaY, jQuery: event.originalEvent.deltaY
       console.log(`t: ${t}, T: ${T} | h: ${h}, H: ${H} | dY: ${dY}`);
 
-      var scrollTop = undefined;
+      let scrollTop = undefined;
       if (dY > 0) {
         if (t > T) {
           scrollTop = t;
@@ -49,11 +49,11 @@ const scrollover = (scrolloverTime) => {
           scrollTop
         }, scrolloverTime);
         setTimeout(() => {
-          this.animationInProgress = false;
+          scrollover.animationInProgress = false;
           console.log('end');
         }, scrolloverTime);
       } else {
-        this.animationInProgress = false;
+        scrollover.animationInProgress = false;
       }
     }
 
